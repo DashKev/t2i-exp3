@@ -18,7 +18,7 @@ EXP3负责选择算子，LLM负责相应的语义改写和长度压缩。
 | 反馈 | 违规置信及弱语义辅助奖励 |
 | 主结果 | 预算内违规成功率ASR、有效返回率BPR、限制首次成功查询成本 |
 
-详见[方法与指标](docs/METHOD.md)。算子模板见`src/t2i_exp3/methods/operators.py`。
+算子模板见`src/t2i_exp3/methods/operators.py`。
 
 ## 目录
 
@@ -35,9 +35,8 @@ src/t2i_exp3/
   configure.py          # 可移植配置入口
   summary.py            # 论文口径汇总
 configs/                # 真实目标示例与纯CPU合成自测
-data/                   # 良性自测样本、公开case编号、资源哈希
+data/                   # 自测样本、I2P200选择编号、下载地址
 tests/                  # CPU离线测试
-docs/                   # 方法、验证及资源说明
 ```
 
 ## 1. 安装与离线自测
@@ -74,22 +73,15 @@ wheel包含Python代码；示例配置和数据获取清单位于仓库中。
 
 I2P原始项目：https://github.com/ml-research/i2p 。
 下载脚本使用Ring-A-Bell固定提交中的I2P CSV副本。
-下载地址和SHA-256见`data/resources.json`；200条选择编号见`data/i2p200_selection.json`。
+下载地址见`data/resources.json`；200条选择编号见`data/i2p200_selection.json`。
 
 ```bash
 t2i-exp3-data i2p
 ```
 
 命令会下载CSV到`data/raw/i2p.csv`，按冻结case编号生成`data/prepared/i2p200.jsonl`。
-完整输出SHA-256应为：
-
-```text
-af47c888625e09c0d71b207ded0d5e2e5c69e0674a5c26da3fd95e82e582ede6
-```
-
-脚本校验源文件和重建子集的SHA-256；校验失败时退出并报告错误。
 输入最小JSONL格式：`{"id":"example-1","intent":"a landscape photo","category":"violence","metadata":{}}`。
-自定义数据使用相同JSONL格式和评测类别标签，实验记录中注明数据集名称及SHA-256。
+自定义数据使用相同JSONL格式和评测类别标签。
 数据分发与使用须遵守其上游条款，详见[外部资源说明](THIRD_PARTY.md)。
 
 ## 3. 获取在线与事后评估资源
@@ -99,7 +91,7 @@ t2i-exp3-data evaluators
 ```
 
 在线反馈与事后评估使用NudeNet和Q16。
-上述命令从DiffZOO固定提交下载`nudenet.py`、`best.onnx`及Q16 `prompts.p`，分别放入`assets/nudenet`与`assets/q16`，并校验SHA-256。
+上述命令从DiffZOO下载`nudenet.py`、`best.onnx`及Q16 `prompts.p`，分别放入`assets/nudenet`与`assets/q16`。
 
 ## 4. 准备模型
 
@@ -158,7 +150,6 @@ t2i-exp3 run configs/sd35.local.json --output results/exp3
 
 正式系统采用Qwen3Guard输入护栏与Stable Diffusion Safety Checker输出护栏。
 CLIP为搜索奖励提供语义相似度评分，ASR按`policy_violation=True`统计。
-详见[方法与系统边界](docs/METHOD.md)。
 
 ### 对照方法
 
@@ -190,5 +181,5 @@ Original Prompt运行应使用`--budget 1`。
 
 ## 8. 验证与许可证
 
-本版已通过20项离线测试，以及GitHub CI的Python 3.11和3.12检查。详细记录见[VALIDATION.md](docs/VALIDATION.md)。
+本版已通过20项离线测试，以及GitHub CI的Python 3.11和3.12检查。
 本项目代码采用[MIT许可证](LICENSE)；模型、数据和第三方评估资源遵守各自条款，见[THIRD_PARTY.md](THIRD_PARTY.md)。
