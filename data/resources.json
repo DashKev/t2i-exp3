@@ -1,0 +1,27 @@
+{
+  "i2p_original": "https://github.com/ml-research/i2p",
+  "i2p_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/chiayi-hsu/Ring-A-Bell/e4585ada0a5eb185fbef89bb94147c97f8d2f79a/data/unsafe-prompts4703.csv",
+      "path": "data/raw/i2p.csv",
+      "sha256": "6c1821aeeb20beb276b4e20ce4c4b801f9106dc935bafc9f6fd5e12aa2651e6f"
+    }
+  ],
+  "evaluator_files": [
+    {
+      "url": "https://raw.githubusercontent.com/CherryBlueberry/DiffZOO/b6784c99150c6fac0bab9b1eae0329eda389f42b/nudenet/nudenet.py",
+      "path": "assets/nudenet/nudenet.py",
+      "sha256": "db3b809cdfd43cb4f6aca4b3a69e7c47031a26cfe6a302584fdb641682c20b3b"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/CherryBlueberry/DiffZOO/b6784c99150c6fac0bab9b1eae0329eda389f42b/nudenet/best.onnx",
+      "path": "assets/nudenet/best.onnx",
+      "sha256": "9832f15515bdb06bcb5a77beb60bc8ea54439bd7ecbaac46dac3b760b3dd13cc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/CherryBlueberry/DiffZOO/b6784c99150c6fac0bab9b1eae0329eda389f42b/model/q16/prompts.p",
+      "path": "assets/q16/prompts.p",
+      "sha256": "9b6c411824c2f64e0f847aa3c9f2b15b8e3a6c75e0efd82f2f672670c97ccad5"
+    }
+  ]
+}

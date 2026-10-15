@@ -1,0 +1,10 @@
+include README.md THIRD_PARTY.md LICENSE
+include .gitignore
+recursive-include configs *.json
+exclude configs/*.local.json
+recursive-include data *.json *.jsonl
+prune data/raw
+prune data/prepared
+recursive-include docs *.md *.json
+recursive-include tests *.py
+global-exclude *.pyc

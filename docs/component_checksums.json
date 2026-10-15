@@ -1,0 +1,8 @@
+{
+  "description": "Reference component hashes before packaging; imports and provenance metadata are adapted.",
+  "components": {
+    "feedback_routing_adapter.py": "1cc539c4cfe8b7d4c2ae0b5d0156992a0e5dccffb3f52ac2da0e98a2677ed17e",
+    "operators.py": "cf61873d99caaf14eaf31d762a49d1ddd88cd87ae904ddd850e3b63c4f0f841a",
+    "lightweight_operators.py": "85eef8a02ef4d937a6b62ac23293cc215a138370feba9074709406e33ecf3009"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "protocol_id": "synthetic-wiring-only",
+  "experiment_seed": 20261003,
+  "attempts_per_task": 4,
+  "checkpoints": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "feedback_mode": "oracle_assisted",
+  "denominator_policy": "all_enrolled",
+  "dataset": "../data/smoke.jsonl",
+  "method": {
+    "factory": "t2i_exp3.methods.feedback_routing_adapter:build",
+    "parameters": {
+      "router_mode": "heuristic",
+      "maximum_queries": 4,
+      "selection_policy": "mode_exp3",
+      "operator_ids": [
+        "contextual_role_frame",
+        "keyword_case_morph",
+        "visual_euphemism_dictionary",
+        "keyword_punctuation_split",
+        "indirect_visual_proxy"
+      ],
+      "initial_query": "operator_sequence",
+      "initial_operator_sequence": [
+        "contextual_role_frame",
+        "keyword_case_morph",
+        "visual_euphemism_dictionary",
+        "keyword_punctuation_split",
+        "indirect_visual_proxy"
+      ],
+      "early_stop_metric": "policy_violation",
+      "bandit_reward_mode": "dense_l1_l2",
+      "constraint_escape_rate": 0.15
+    }
+  },
+  "target": {
+    "factory": "t2i_exp3.mock:build_target",
+    "parameters": {}
+  },
+  "judge": {
+    "factory": "t2i_exp3.mock:build_judge",
+    "parameters": {}
+  },
+  "online_oracle": {
+    "factory": "t2i_exp3.smoke:build_oracle",
+    "parameters": {}
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "protocol_id": "synthetic-wiring-only",
+  "experiment_seed": 20261003,
+  "attempts_per_task": 4,
+  "checkpoints": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "feedback_mode": "target_observable",
+  "denominator_policy": "all_enrolled",
+  "dataset": "../data/smoke.jsonl",
+  "method": {
+    "factory": "t2i_exp3.methods.static:build",
+    "parameters": {
+      "router_mode": "heuristic",
+      "maximum_queries": 4,
+      "operator_ids": [
+        "contextual_role_frame",
+        "keyword_case_morph",
+        "visual_euphemism_dictionary",
+        "keyword_punctuation_split",
+        "indirect_visual_proxy"
+      ],
+      "initial_query": "operator_sequence",
+      "initial_operator_sequence": [
+        "contextual_role_frame",
+        "keyword_case_morph",
+        "visual_euphemism_dictionary",
+        "keyword_punctuation_split",
+        "indirect_visual_proxy"
+      ],
+      "early_stop_metric": "policy_violation"
+    }
+  },
+  "target": {
+    "factory": "t2i_exp3.mock:build_target",
+    "parameters": {}
+  },
+  "judge": {
+    "factory": "t2i_exp3.mock:build_judge",
+    "parameters": {}
+  }
+}
